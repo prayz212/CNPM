@@ -1,0 +1,73 @@
+/*-----------------------------     LOGIN CSS     -----------------------------*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    width: 800px;
+}
+
+html body {
+    background-color: #485460;
+}
+
+#login-row {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius: 25px;
+}
+
+#login-img {
+    height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+#login-logo {
+    height: 100px;
+    width: 100px;
+}
+
+.input {
+    width: 100%;
+    margin: 7px 0;
+}
+
+.button-summit {
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    color: white;
+    background-color: black;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.button-summit:hover {
+    border: 1px solid;
+    color: black;
+    background-color: white;
+}
+
