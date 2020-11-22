@@ -1,10 +1,7 @@
 <?php
+
 session_start();
 require_once "./mvc/Bridge.php";
+$myApp = new App();
 
-if (isset($_SESSION['loggedIn'])) {
-    $myApp = new App();
-} else {
-    $login = new App2();
-}
 ?>

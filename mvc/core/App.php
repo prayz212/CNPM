@@ -6,11 +6,18 @@ class App{
     protected $params=[];
 
     function __construct(){
+
+        if (!isset($_SESSION['loggedIn'])) {
+            require_once "./mvc/controllers/Account.php";
+            $controller = new Account();
+            call_user_func_array([$controller, "Login"], []);
+            exit();
+        }
  
         $arr = $this->UrlProcess();
  
         // Controller
-        if( file_exists("./mvc/controllers/".$arr[0].".php") ){
+        if(file_exists("./mvc/controllers/".$arr[0].".php") ){
             $this->controller = $arr[0];
             unset($arr[0]);
         }

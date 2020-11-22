@@ -3,6 +3,11 @@
 class Account extends Controller {
 
     function Login() {
+        if (isset($_SESSION["loggedIn"])) {
+            header("Location: ../Home/Intro");
+            exit();
+        }
+
         if (!isset($_POST["username"]) && !isset($_POST["password"])) {
             $this->view("LoginView", []);
         }
@@ -19,7 +24,7 @@ class Account extends Controller {
                 $_SESSION["loggedIn"] = $res["id"];
                 $_SESSION["permission"] = $res["permission"];
 
-                header("Location: ../Home/Info");
+                header("Location: ../Home/Intro");
                 exit();
             } else {
                 echo "dang nhap that bai";
