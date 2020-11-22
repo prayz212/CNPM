@@ -19,15 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef9bd8a0-3739-4e63-9296-0b30e9c35af8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mvc/views/pages/intro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc/Bridge.php" beforeDir="false" afterPath="$PROJECT_DIR$/mvc/Bridge.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc/controllers/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/mvc/controllers/Account.php" afterDir="false" />
+    <list default="true" id="ef9bd8a0-3739-4e63-9296-0b30e9c35af8" name="Default Changelist" comment="Commit Intro Page&#10;-----------------&#10;Commit Invoice, Request Stock In, Employer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvc/core/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/mvc/core/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc/core/App2.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +33,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1kdyEVbh9vRJubvcwNgElVjqSj1" />
   <component name="ProjectViewState">
@@ -70,8 +65,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606044652945</updated>
-      <workItem from="1606044654669" duration="6957000" />
+      <workItem from="1606044654669" duration="7311000" />
     </task>
+    <task id="LOCAL-00001" summary="Commit Intro Page&#10;-----------------&#10;Commit Invoice, Request Stock In, Employer">
+      <created>1606052776342</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606052776342</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,5 +90,19 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit Intro Page&#10;-----------------&#10;Commit Invoice, Request Stock In, Employer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Intro Page&#10;-----------------&#10;Commit Invoice, Request Stock In, Employer" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1360" y="280" key="Vcs.Push.Dialog.v2" timestamp="1606052784072">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1360" y="280" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606052784072" />
+    <state x="-1147" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606052983388">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1147" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1606052983388" />
   </component>
 </project>
