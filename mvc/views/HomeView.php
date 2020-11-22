@@ -152,14 +152,16 @@ while ($level > 1) {
         <div class="py-5">
             <div class="row">
                 <?php
-                if ($active != 0) { ?>
+                if ($active != 0) {
+                    $user = $data["userInfo"]->fetch_assoc();
+                ?>
                 <!--Infor account-->
                 <div class="col-lg-3 col-md-12 shadow-lg p-3 mb-3 bg-info rounded h-100 text-white text-center">
-                    <h5 class="text-center mb-5">THÔNG TIN TÀI KHOẢN</h5>
-                    <div><img class="rounded-circle shadow p-1 my-3" src="<?= $root . "public/imgs/icon-user.jpg" ?>" width="75px" height="75px"></div>
-                    <h5 class="mb-1">nguyen van a</h5>
-                    <h6 class="mb-1">Email: a@b.com</h6>
-                    <h6 class="mb-3">Số điện thoại: 04324324</h6>
+                    <h5 class="text-center mb-3">THÔNG TIN TÀI KHOẢN</h5>
+                    <div><img class="rounded-circle shadow p-1 my-3" src="<?= $root . "public/imgs/icon-user.jpg" ?>" width="80px" height="80px"></div>
+                    <h5 class="mb-1"><?= $user["lastName"] . " " . $user["firstName"] ?></h5>
+                    <h6 class="mb-1"><?= "Email: " . $user["email"] ?></h6>
+                    <h6 class="mb-3"><?= "Số điện thoại: " . $user["phoneNumber"] ?> </h6>
                 </div>
                 <?php
                 }

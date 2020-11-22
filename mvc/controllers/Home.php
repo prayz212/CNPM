@@ -6,6 +6,15 @@ class Home extends Controller{
     function Error(){
         echo "sai url";
     }
+
+    function getUserInfo() {
+        $id = $_SESSION["loggedIn"];
+        $employerModel = $this->model("EmployerModel");
+        $employer = $employerModel->getEmployerById($id);
+
+        return $employer;
+    }
+
     function Intro() {
         //Call view
         $this->view("HomeView", [
@@ -18,22 +27,28 @@ class Home extends Controller{
         $invoiceModel = $this->model("InvoiceModel");
         $invoiceList = $invoiceModel->getAllInvoice();
 
+        $user = $this->getUserInfo();
+
         //Call view
         $this->view("HomeView", [
             "ListInvoiceView" => "true",
-            "listInvoices" => $invoiceList
+            "listInvoices" => $invoiceList,
+            "userInfo" => $user
         ]);
     }
 
     function Management() {
         //Call model
-        $userModel = $this->model("EmployerModel");
-        $employers = $userModel->getAllEmployer();
+        $employerModel = $this->model("EmployerModel");
+        $employers = $employerModel->getAllEmployer();
+
+        $user = $this->getUserInfo();
 
         //Call view
         $this->view("HomeView", [
             "ManegementView" => "true",
-            "EmployerList" => $employers
+            "EmployerList" => $employers,
+            "userInfo" => $user
         ]);
     }
 
@@ -43,10 +58,13 @@ class Home extends Controller{
 
         $requests = $requestModel->getAllRequestStockIn();
 
+        $user = $this->getUserInfo();
+
         //Call view
         $this->view("HomeView", [
             "StockInView" => "true",
-            "RequestList" => $requests
+            "RequestList" => $requests,
+            "userInfo" => $user
         ]);
     }
 
@@ -106,10 +124,13 @@ class Home extends Controller{
         $invoice = $invoiceModel->getInvoiceById($id);
         $detail = $detailInvoiceModel->getDetailInvoiceById($id);
 
+        $user = $this->getUserInfo();
+
         $this->view("HomeView", [
             "DetailInvoiceView" => "true",
             "InvoiceInfo" => $invoice,
-            "DetailInvoice" => $detail
+            "DetailInvoice" => $detail,
+            "userInfo" => $user
         ]);
     }
 
@@ -206,9 +227,12 @@ class Home extends Controller{
 
         $employerInfo = $employerModel->getEmployerById($id);
 
+        $user = $this->getUserInfo();
+
         $this->view("HomeView", [
             "DetailEmployerView" => "true",
-            "EmployerInfo" => $employerInfo
+            "EmployerInfo" => $employerInfo,
+            "userInfo" => $user
         ]);
     }
 
@@ -289,11 +313,14 @@ class Home extends Controller{
         $request = $requestModel->getRequestStockInById($id);
         $detail = $detailRequestModel->getDetailRequestStockInById($id);
 
+        $user = $this->getUserInfo();
+
         //Call view
         $this->view("HomeView", [
             "DetailStockInRequestView" => "true",
             "RequestInfo" => $request,
-            "RequestDetail" => $detail
+            "RequestDetail" => $detail,
+            "userInfo" => $user
         ]);
     }
 
