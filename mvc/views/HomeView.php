@@ -26,6 +26,9 @@ switch ($action) {
     case "DetailStockInRequest":
         $active = "3";
         break;
+    case "StockOut":
+        $active = "4";
+        break;  
 }
 
 $level = count($url);
@@ -46,13 +49,13 @@ while ($level > 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="<?= $root . "public/style.css" ?>">
     <script src="<?= $root . "public/myscript.js" ?>"></script>
@@ -104,7 +107,7 @@ while ($level > 1) {
 
                         if ($_SESSION["permission"] == 1) { ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Ghi nhận xuất hàng</a>
+                                <a class="nav-link" href="<?= $root . "Home/StockOut" ?>">Ghi nhận xuất hàng</a>
                             </li>
                             <?php
                         }
@@ -175,6 +178,8 @@ while ($level > 1) {
                     <?php isset($data["DetailEmployerView"]) and $data["DetailEmployerView"] === "true" ? require_once "./mvc/views/pages/detail_employer.php" : ""?>
                     <?php isset($data["StockInView"]) and $data["StockInView"] === "true" ? require_once "./mvc/views/pages/stock_in.php" : ""?>
                     <?php isset($data["DetailStockInRequestView"]) and $data["DetailStockInRequestView"] === "true" ? require_once "./mvc/views/pages/detail_stock_in.php" : ""?>
+                    <?php isset($data["StockOutView"]) and $data["StockOutView"] === "true" ? require_once "./mvc/views/pages/stock_out.php" : ""?>
+                    <?php isset($data["DetailStockOutRequestView"]) and $data["DetailStockOutRequestView"] === "true" ? require_once "./mvc/views/pages/detail_stock_out.php" : ""?>
                 </div>
                 <?php
                 if ($active == 0) {

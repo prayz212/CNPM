@@ -16,7 +16,22 @@ class RequestModel extends DB{
 
         return false;
     }
+    function getAllRequestStockOut() {
+        $sql = "SELECT `request`.`id`, `request`.`type`, `request`.`note`, `request`.`date`, `stock`.`name` FROM `request`, `stock` WHERE `stock`.`id` = `request`.`id_stock` and `request`.`type` = 1";
 
+        $stm = $this->con->prepare($sql);
+        if (!$stm->execute()) {
+            return false;
+        }
+
+        $result = $stm->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+
+        return false;
+    }
     function insertRequestStockIn($id, $type, $note, $date, $stock) {
         $sql = "INSERT INTO request (id, id_stock, type, note, date) VALUES (?, ?, ?, ?, ?)";
 

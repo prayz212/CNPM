@@ -67,6 +67,21 @@ class Home extends Controller{
             "userInfo" => $user
         ]);
     }
+    function StockOut() {
+        //Call model
+        $requestModel = $this->model("RequestModel");
+
+        $requests = $requestModel->getAllRequestStockOut();
+
+        $user = $this->getUserInfo();
+
+        //Call view
+        $this->view("HomeView", [
+            "StockOutView" => "true",
+            "RequestList" => $requests,
+            "userInfo" => $user
+        ]);
+    }
 
     /*-------------------------------------     NHAN VIEN BAN HANG      -------------------------------------*/
     function DeleteInvoice($id) {
@@ -298,6 +313,39 @@ class Home extends Controller{
 
             if ($newRequestDetail) {
                 header("Location: ../Home/StockIn");
+                exit();
+            }
+        } else {
+            echo "Khong the them hoa don";
+        }
+    }
+
+    function NewStockOutRequest() {
+        $id_arr = $_POST["book_id"];
+        $quan_arr = $_POST["quanlity"];
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        $id =  substr(str_shuffle($permitted_chars), 0, 12);
+        $stock = $_POST["stock"];
+        $note = $_POST["note"];
+        $now = date('d/m/Y');
+        $n = count($id_arr);
+        $type = 1;
+
+        //Call model
+        $requestModel = $this->model("RequestModel");
+        $detailRequestModel = $this->model("DetailRequestModel");
+
+        //CREATE REQUEST FIRST
+        $newRequest = $requestModel->insertRequestStockIn($id, $type, $note, $now, $stock);
+
+
+        if ($newRequest) {
+            //INSERT REQUEST DETAIL
+            $newRequestDetail = $detailRequestModel->insertDetailRequestStockIn($id, $id_arr, $quan_arr, $n);
+
+            if ($newRequestDetail) {
+                header("Location: ../Home/StockOut");
                 exit();
             }
         } else {
