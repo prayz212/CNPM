@@ -71,8 +71,8 @@ if (isset($data["RequestList"]) and $data["RequestList"] != false) {
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="input-group">
-                            <input id="book_id" type="text" class="form-control mr-1 rounded w-50" placeholder="Nhập mã sách">
-                            <input id="quanlity" type="text" class="form-control mr-1 rounded w-25" placeholder="Nhập số lượng">
+                            <input id="book_id" type="text" class="form-control mr-1 rounded w-50" placeholder="Nhập mã sách" required>
+                            <input id="quanlity" type="text" class="form-control mr-1 rounded w-25" placeholder="Nhập số lượng" required>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary rounded" type="button" onclick="addRow()">Thêm</button>
                             </div>
@@ -93,7 +93,7 @@ if (isset($data["RequestList"]) and $data["RequestList"] != false) {
                         <input name="note" type="text" class="form-control" id="class-room" placeholder="Nhập ghi chú">
                     </div>
                     <div class="form-group">
-                        <select class="form-control" name="stock" class="w-100">
+                        <select class="form-control" name="stock" class="w-100" required>
                             <option value="" selected disabled hidden>Chọn kho</option>
                             <option value="mM47aKyVvZzL">Kho A</option>
                             <option value="viONpbQTCtBD">Kho B</option>

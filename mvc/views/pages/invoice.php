@@ -72,8 +72,8 @@ if (isset($data["listInvoices"]) and $data["listInvoices"] != false) {
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="input-group">
-                            <input id="book_id" type="text" class="form-control mr-1 rounded w-50" placeholder="Nhập mã sách">
-                            <input id="quanlity" type="text" class="form-control mr-1 rounded w-25" placeholder="Nhập số lượng">
+                            <input id="book_id" type="text" class="form-control mr-1 rounded w-50" placeholder="Nhập mã sách" required>
+                            <input id="quanlity" type="text" class="form-control mr-1 rounded w-25" placeholder="Nhập số lượng" required>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary rounded" type="button" onclick="addRow()">Thêm</button>
                             </div>
