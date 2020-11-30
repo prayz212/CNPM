@@ -71,7 +71,8 @@ class Home extends Controller{
         //Call model
         $requestModel = $this->model("RequestModel");
 
-        $requests = $requestModel->getAllRequestStockOut();
+        // $requests = $requestModel->getAllRequestStockOut();
+        $requests = $requestModel->getAllRequestStockIn();
 
         $user = $this->getUserInfo();
 
@@ -311,10 +312,11 @@ class Home extends Controller{
             //INSERT REQUEST DETAIL
             $newRequestDetail = $detailRequestModel->insertDetailRequestStockIn($id, $id_arr, $quan_arr, $n);
 
-            if ($newRequestDetail) {
-                header("Location: ../Home/StockIn");
-                exit();
-            }
+            // if ($newRequestDetail) {
+            //     header("Location: ../Home/StockIn");
+            //     exit();
+            // }
+            header("Location: ../Home/StockIn");
         } else {
             echo "Khong the them hoa don";
         }
@@ -344,10 +346,11 @@ class Home extends Controller{
             //INSERT REQUEST DETAIL
             $newRequestDetail = $detailRequestModel->insertDetailRequestStockIn($id, $id_arr, $quan_arr, $n);
 
-            if ($newRequestDetail) {
-                header("Location: ../Home/StockOut");
-                exit();
-            }
+            // if ($newRequestDetail) {
+            //     header("Location: ../Home/StockOut");
+            //     exit();
+            // }
+            header("Location: ../Home/StockOut");
         } else {
             echo "Khong the them hoa don";
         }

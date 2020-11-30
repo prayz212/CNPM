@@ -122,8 +122,8 @@ function deleteRow(ele) {
     let id = ele.getAttribute("id");
     books.splice(id, 1);
 }
-// --end added----
-
+// -----------end added------------------------------
+// --------------------------------------------------
 // function addRow() {
 //     let idField = document.getElementById("book_id");
 //     let quanlityField = document.getElementById("quanlity");

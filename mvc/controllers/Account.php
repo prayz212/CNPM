@@ -27,7 +27,12 @@ class Account extends Controller {
                 header("Location: ../Home/Intro");
                 exit();
             } else {
-                echo "dang nhap that bai";
+                // echo "dang nhap that bai";
+                if (!isset($_SESSION)) {
+                    session_start();
+                }
+                $_SESSION["login_status"] = "fail";
+                $this->view("LoginView", []);
             }
         }
     }
