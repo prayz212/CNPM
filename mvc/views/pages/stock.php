@@ -1,33 +1,21 @@
 <?php
 $isShow = false;
-if (isset($data["listInvoices"]) and $data["listInvoices"] != false) {
-    $isShow = true;
-    $listInvoice = $data["listInvoices"];
-}
+//if (isset($data["listInvoices"]) and $data["listInvoices"] != false) {
+//    $isShow = true;
+//    $listInvoice = $data["listInvoices"];
+//}
 
 ?>
 
 <div class="col-lg-12 shadow p-2 mb-3 bg-light rounded">
-    <H5 class="text-center my-3">DANH SÁCH HÓA ĐƠN</H5>
-    <div class="d-flex flex-row-reverse">
-        <a role="button" aria-pressed="true" class="mb-3" data-toggle="modal" data-target="#createInvoice">
-            <button class="btn btn-primary">
-                Tạo hóa đơn
-                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg>
-            </button>
-
-        </a>
-    </div>
+    <h5 class="text-center my-3">DANH SÁCH HÀNG HOÁ TRONG KHO</h5>
     <table class="table text-center table-hover">
         <thead>
         <tr>
             <th scope="col">STT</th>
-            <th scope="col">Mã hóa đơn</th>
-            <th scope="col">Thành tiền</th>
-            <th scope="col">Ghi chú</th>
-            <th scope="col">Ngày tạo</th>
+            <th scope="col">Mã hàng hoá</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Kho</th>
         </tr>
         </thead>
         <tbody>
@@ -44,12 +32,13 @@ if (isset($data["listInvoices"]) and $data["listInvoices"] != false) {
             <td><?= $row["total_price"] ?></td>
             <td><?= $row["note"] ?></td>
             <td><?= $row["date"] ?></td>
+<!--            <td><a id="--><?//= $row["id"] ?><!--" class="delete_invoice" data-toggle="modal">Xóa</a></td>-->
         </tr>
         <?php
                 $number++;
             }
         } else { ?>
-            <td colspan="5">Chua co hoa don</td>
+            <td colspan="4">Chua co hang hoa</td>
         <?php
         }
         ?>

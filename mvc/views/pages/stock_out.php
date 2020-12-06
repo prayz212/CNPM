@@ -49,7 +49,7 @@ if (isset($data["RequestList"]) and $data["RequestList"] != false) {
                 $number++;
             }
         } else { ?>
-            <td colspan="6">Chua co yeu cau</td>
+            <td colspan="6">Chưa có yêu cầu</td>
             <?php
         }
         ?>
@@ -57,7 +57,7 @@ if (isset($data["RequestList"]) and $data["RequestList"] != false) {
     </table>
 </div>
 
-<!-- Tạo mới hoá đơn -->
+<!-- Tạo mới yêu cầu -->
 <div class="modal fade" id="newStockOutRequest" tabindex="-1" role="dialog" aria-labelledby="newStockOutRequestLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

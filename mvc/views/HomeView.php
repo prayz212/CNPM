@@ -28,7 +28,11 @@ switch ($action) {
         break;
     case "StockOut":
         $active = "4";
-        break;  
+        break;
+    case "DetailStockOutRequest":
+        $active = "4";
+        break;
+
 }
 
 $level = count($url);
@@ -67,7 +71,7 @@ while ($level > 1) {
     <div class="header">
         <div class="navbar-part">
             <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-                <a class="navbar-brand" href="#"><img src="<?= $root . "public/imgs/logo-home.png" ?>" alt="" width="80px" height="22px"></a>
+                <a class="navbar-brand" href="<?= $root . "Home/Intro" ?>"><img src="<?= $root . "public/imgs/logo-home.png" ?>" alt="" width="80px" height="22px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -77,12 +81,6 @@ while ($level > 1) {
                             <a class="nav-link" href="<?= $root . "Home/Intro" ?>">Trang chủ</span></a>
                         </li>
                         <?php
-                        if ($_SESSION["permission"] == 0 or $_SESSION["permission"] == 1) { ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Quản lý kho</a>
-                            </li>
-                            <?php
-                        }
 
                         if ($_SESSION["permission"] == 0) { ?>
                             <li class="nav-item <?= $active == 1 ? "active" : "" ?>">
@@ -106,7 +104,7 @@ while ($level > 1) {
                         }
 
                         if ($_SESSION["permission"] == 1) { ?>
-                            <li class="nav-item">
+                            <li class="nav-item <?= $active == 4 ? "active" : "" ?>">
                                 <a class="nav-link" href="<?= $root . "Home/StockOut" ?>">Ghi nhận xuất hàng</a>
                             </li>
                             <?php
@@ -180,6 +178,127 @@ while ($level > 1) {
                     <?php isset($data["DetailStockInRequestView"]) and $data["DetailStockInRequestView"] === "true" ? require_once "./mvc/views/pages/detail_stock_in.php" : ""?>
                     <?php isset($data["StockOutView"]) and $data["StockOutView"] === "true" ? require_once "./mvc/views/pages/stock_out.php" : ""?>
                     <?php isset($data["DetailStockOutRequestView"]) and $data["DetailStockOutRequestView"] === "true" ? require_once "./mvc/views/pages/detail_stock_out.php" : ""?>
+
+                    <?php
+
+                    if (isset($_SESSION["insertInvoice"])) {
+                        if ($_SESSION["insertInvoice"] === "success") {
+                            $mess = "Đã thêm hoá đơn thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["insertInvoice"] === "fail") {
+                            $mess = "Thêm hoá đơn thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["insertInvoice"]);
+                    }
+
+                    if (isset($_SESSION["deleteInvoice"])) {
+                        if ($_SESSION["deleteInvoice"] === "success") {
+                            $mess = "Đã xoá hoá đơn thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["deleteInvoice"] === "fail") {
+                            $mess = "Xoá hoá đơn thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["deleteInvoice"]);
+                    }
+
+                    if (isset($_SESSION["updateInvoice"])) {
+                        if ($_SESSION["updateInvoice"] === "success") {
+                            $mess = "Đã cập nhật hoá đơn thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["updateInvoice"] === "fail") {
+                            $mess = "Cập nhật hoá đơn thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["updateInvoice"]);
+                    }
+
+                    if (isset($_SESSION["insertEmployer"])) {
+                        if ($_SESSION["insertEmployer"] === "success") {
+                            $mess = "Đã thêm nhân viên thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["insertEmployer"] === "fail") {
+                            $mess = "Thêm nhân viên thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["insertEmployer"]);
+                    }
+
+                    if (isset($_SESSION["deleteEmployer"])) {
+                        if ($_SESSION["deleteEmployer"] === "success") {
+                            $mess = "Đã xoá nhân viên thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["deleteEmployer"] === "fail") {
+                            $mess = "Xoá nhân viên thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["deleteEmployer"]);
+                    }
+
+                    if (isset($_SESSION["updateEmployer"])) {
+                        if ($_SESSION["updateEmployer"] === "success") {
+                            $mess = "Đã cập nhật thông tin nhân viên thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["updateEmployer"] === "fail") {
+                            $mess = "Cập nhật thông tin nhân viên thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["updateEmployer"]);
+                    }
+
+                    if (isset($_SESSION["newRequest"])) {
+                        if ($_SESSION["newRequest"] === "success") {
+                            $mess = "Đã thêm yêu cầu thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["newRequest"] === "fail") {
+                            $mess = "Thêm yêu cầu thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["newRequest"]);
+                    }
+
+                    if (isset($_SESSION["deleteRequest"])) {
+                        if ($_SESSION["deleteRequest"] === "success") {
+                            $mess = "Đã xoá yêu cầu thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["deleteRequest"] === "fail") {
+                            $mess = "Xoá yêu cầu thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["deleteRequest"]);
+                    }
+
+                    if (isset($_SESSION["updateRequest"])) {
+                        if ($_SESSION["updateRequest"] === "success") {
+                            $mess = "Đã cập nhật thông tin yêu cầu thành công.";
+                            $isSuccess = true;
+                        } else if ($_SESSION["updateRequest"] === "fail") {
+                            $mess = "Cập nhật thông tin yêu cầu thất bại.";
+                            $isSuccess = false;
+                        }
+
+                        unset($_SESSION["updateRequest"]);
+                    }
+
+                    if (isset($isSuccess)) {
+                        ?>
+
+                        <div class="row d-flex justify-content-center">
+                            <div class="my-alert alert <?= $isSuccess ? "alert-success" : "alert-danger" ?> w-50 text-center" role="alert"><?= $mess ?></div>
+                        </div>
+
+                    <?php
+                    }
+                    ?>
                 </div>
                 <?php
                 if ($active == 0) {
@@ -189,18 +308,6 @@ while ($level > 1) {
         </div>
     </div>
 </div>
-
-<?php
-//$n = 3;
-//while ($n > 0) {
-//    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-//    $id =  substr(str_shuffle($permitted_chars), 0, 12);
-//    echo $id . "<br/>";
-//    $n--;
-//}
-//?>
-
 </body>
-
 </html>
 

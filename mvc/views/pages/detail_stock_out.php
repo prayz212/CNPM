@@ -4,9 +4,9 @@ $detail = $data["RequestDetail"];
 ?>
 
 <div class="col-lg-12 shadow p-2 mb-3 bg-light rounded">
-    <H5 class="text-center my-3">CHI TIẾT YÊU CẦU NHẬP HÀNG</H5>
+    <H5 class="text-center my-3">CHI TIẾT YÊU CẦU XUẤT HÀNG</H5>
 
-    <form class="p-2" method="post" action="<?= $root . "Home/UpdateRequestStockIn/" . $request["id"] ?>">
+    <form class="p-2" method="post" action="<?= $root . "Home/UpdateRequestStockOut/" . $request["id"] ?>">
         <div class="form-group row">
             <div class="input-group mb-3 col-md-6">
                 <div class="input-group-append">
@@ -57,10 +57,9 @@ $detail = $data["RequestDetail"];
 
         <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn btn-primary mx-3">Lưu thay đổi</button>
-            <button id="<?= $request["id"] ?>" data-toggle="modal" type="button" class="delete_request_stock_in btn btn-danger ml-3">Xóa yêu cầu</button>
-            <button type="button" class="btn btn-secondary" onclick="window.location='<?= $root . "Home/StockIn" ?>';">Hủy bỏ</button>
+            <button id="<?= $request["id"] ?>" data-toggle="modal" type="button" class="delete_request_stock_out btn btn-danger ml-3">Xóa yêu cầu</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location='<?= $root . "Home/StockOut" ?>';">Hủy bỏ</button>
         </div>
-
     </form>
 </div>
 

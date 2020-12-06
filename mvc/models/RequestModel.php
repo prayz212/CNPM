@@ -32,7 +32,7 @@ class RequestModel extends DB{
 
         return false;
     }
-    function insertRequestStockIn($id, $type, $note, $date, $stock) {
+    function insertRequest($id, $type, $note, $date, $stock) {
         $sql = "INSERT INTO request (id, id_stock, type, note, date) VALUES (?, ?, ?, ?, ?)";
 
         $stm = $this->con->prepare($sql);
@@ -44,7 +44,7 @@ class RequestModel extends DB{
         return true;
     }
 
-    function getRequestStockInById($id) {
+    function getRequestById($id) {
         $sql = "SELECT * FROM request WHERE id = ?";
 
         $stm = $this->con->prepare($sql);

@@ -26,7 +26,17 @@ $(document).ready(function(){
         $('#deleteRequest').modal('show');
 
         $('#sure').on('click', function () {
-            window.location.replace("../../Home/DeleteRequest/" + id);
+            window.location.replace("../../Home/DeleteRequestStockIn/" + id);
+        });
+    });
+
+    $(".delete_request_stock_out").click(function () {
+        let id = $(this).attr('id');
+
+        $('#deleteRequest').modal('show');
+
+        $('#sure').on('click', function () {
+            window.location.replace("../../Home/DeleteRequestStockOut/" + id);
         });
     });
 
@@ -45,10 +55,15 @@ $(document).ready(function(){
         window.location.replace("../Home/DetailStockInRequest/" + id)
     });
 
+    $('.table-row-stock-out').click(function() {
+        let id = $(this).attr('id');
+        window.location.replace("../Home/DetailStockOutRequest/" + id)
+    });
 
 
-    if ($(".change-permission-alert").length) {
-        setTimeout(function () { $('.change-permission-alert').hide(); }, 5000);
+
+    if ($(".my-alert").length) {
+        setTimeout(function () { $('.my-alert').hide(); }, 5000);
     }
 });
 
@@ -83,8 +98,6 @@ function addRow() {
 
         book_id_td.appendChild(input_id);
         quanlity_td.appendChild(input_quan);
-
-        // book_id_td.setAttribute("name", "book_id[]");
 
         tr.appendChild(book_id_td);
         tr.appendChild(quanlity_td);

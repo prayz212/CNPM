@@ -27,6 +27,7 @@ if (isset($_GET["url"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="<?= $root . "public/myscript.js" ?>"></script>
 </head>
 <body>
 
@@ -65,6 +66,27 @@ if (isset($_GET["url"])) {
                     </form>
                 </div>
             </div>
+
+            <?php
+            if (isset($_SESSION["loginStatus"])) {
+                if ($_SESSION["loginStatus"] === "fail") {
+                    $mess = "Đăng nhập thất bại. Vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu.";
+                    $isSuccess = false;
+                }
+
+                unset($_SESSION["loginStatus"]);
+            }
+
+            if (isset($isSuccess)) {
+                ?>
+
+                <div class="row d-flex justify-content-center">
+                    <div class="my-3 my-alert alert <?= $isSuccess ? "alert-success" : "alert-danger" ?> w-75 text-center" role="alert"><?= $mess ?></div>
+                </div>
+
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>

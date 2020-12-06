@@ -60,7 +60,7 @@ if (isset($data["EmployerList"]) and $data["EmployerList"] != false) {
     </table>
 </div>
 
-<!-- Tạo mới hoá đơn -->
+<!-- Tạo mới nhân viên -->
 <div class="modal fade" id="newEmployer" tabindex="-1" role="dialog" aria-labelledby="newEmployerLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

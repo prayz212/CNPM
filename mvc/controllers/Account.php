@@ -3,7 +3,7 @@
 class Account extends Controller {
 
     function Login() {
-        if (isset($_SESSION["loggedIn"])) {
+        if (isset($_SESSION["EmployerModel"])) {
             header("Location: ../Home/Intro");
             exit();
         }
@@ -27,7 +27,9 @@ class Account extends Controller {
                 header("Location: ../Home/Intro");
                 exit();
             } else {
-                echo "dang nhap that bai";
+                $_SESSION["loginStatus"] = "fail";
+                header("Location: ../");
+                exit();
             }
         }
     }

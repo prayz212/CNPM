@@ -95,10 +95,16 @@ class Home extends Controller{
             $deleteResult = $invoiceModel->deteleInvoiceById($id);
 
             if ($deleteResult) {
-                header("Location: ../../Home/Invoice");
-                exit();
+                $_SESSION["deleteInvoice"] = "success";
+            } else {
+                $_SESSION["deleteInvoice"] = "fail";
             }
+        } else {
+            $_SESSION["deleteInvoice"] = "fail";
         }
+
+        header("Location: ../../Home/Invoice");
+        exit();
     }
 
     function NewInvoice() {
@@ -122,13 +128,15 @@ class Home extends Controller{
             //INSERT DETAIL INVOICE
             $detailInvoice = $detailInvoiceModel->insertDetailInvoice($id, $id_arr, $quan_arr, $n);
 
-            if ($detailInvoice) {
-                header("Location: ../Home/Invoice");
-                exit();
+            if (!$detailInvoice) {
+                $_SESSION["insertInvoice"] = "fail";
             }
         } else {
-            echo "Khong the them hoa don";
+            $_SESSION["insertInvoice"] = "fail";
         }
+
+        header("Location: ../Home/Invoice");
+        exit();
     }
 
     function DetailInvoice($id) {
@@ -163,23 +171,25 @@ class Home extends Controller{
         $deteleDetail = $detailInvoiceModel->deteleDetailInvoiceById($id);
 
         if (!$deteleDetail) {
-            die("Xoa chi tiet hoa don that bai");
+            $_SESSION["updateInvoice"] = "fail";
         }
 
         //UPDATE INVOICE INFO
         $updateInfo = $invoiceModel->updateInvoiceById($id, $note);
         if (!$updateInfo) {
-            die("Cap nhat thong tin hoa don that bai");
+            $_SESSION["updateInvoice"] = "fail";
         }
 
         //INSERT NEW DETAIL INVOICE
         $detailInvoice = $detailInvoiceModel->insertDetailInvoice($id, $id_arr, $quan_arr, $n);
         if ($detailInvoice) {
-            header("Location: ../../Home/Invoice");
-            exit();
+            $_SESSION["updateInvoice"] = "success";
         } else {
-            die("Them chi tiet hoa don that bai");
+            $_SESSION["updateInvoice"] = "fail";
         }
+
+        header("Location: ../../Home/Invoice");
+        exit();
     }
     /*-------------------------------------     HET NHAN VIEN BAN HANG      -------------------------------------*/
 
@@ -217,11 +227,13 @@ class Home extends Controller{
         $newEmployer = $employerModel->insertEmployer($id, $firstName, $lastName, $permission, $dob, $phone, $email, $address, $senior, $username, $password);
 
         if ($newEmployer) {
-            header("Location: ../Home/Management");
-            exit();
+            $_SESSION["insertEmployer"] = "success";
         } else {
-            echo "Khong the them nhan vien";
+            $_SESSION["insertEmployer"] = "fail";
         }
+
+        header("Location: ../Home/Management");
+        exit();
     }
 
     function DeleteEmployer($id) {
@@ -231,9 +243,13 @@ class Home extends Controller{
         $deleteEmployer = $employerModel->deteleEmployerById($id);
 
         if ($deleteEmployer) {
-            header("Location: ../../Home/Management");
-            exit();
+            $_SESSION["deleteEmployer"] = "success";
+        } else {
+            $_SESSION["deleteEmployer"] = "fail";
         }
+
+        header("Location: ../../Home/Management");
+        exit();
     }
 
     function DetailEmployer($id) {
@@ -278,11 +294,13 @@ class Home extends Controller{
 
         $update = $employerModel->updateEmployerById($id, $firstName, $lastName, $permission, $dob, $phone, $email, $address, $senior);
         if ($update) {
-            header("Location: ../../Home/Management");
-            exit();
+            $_SESSION["updateEmployer"] = "success";
         } else {
-            die("Cap nhat nhan vien that bai");
+            $_SESSION["updateEmployer"] = "fail";
         }
+
+        header("Location: ../../Home/Management");
+        exit();
     }
     /*-------------------------------------     HET NHAN VIEN QUAN LY      -------------------------------------*/
 
@@ -304,20 +322,21 @@ class Home extends Controller{
         $detailRequestModel = $this->model("DetailRequestModel");
 
         //CREATE REQUEST FIRST
-        $newRequest = $requestModel->insertRequestStockIn($id, $type, $note, $now, $stock);
-
+        $newRequest = $requestModel->insertRequest($id, $type, $note, $now, $stock);
 
         if ($newRequest) {
             //INSERT REQUEST DETAIL
-            $newRequestDetail = $detailRequestModel->insertDetailRequestStockIn($id, $id_arr, $quan_arr, $n);
+            $newRequestDetail = $detailRequestModel->insertDetailRequest($id, $id_arr, $quan_arr, $n);
 
             if ($newRequestDetail) {
-                header("Location: ../Home/StockIn");
-                exit();
+                $_SESSION["newRequest"] = "success";
             }
         } else {
-            echo "Khong the them hoa don";
+            $_SESSION["newRequest"] = "fail";
         }
+
+        header("Location: ../Home/StockIn");
+        exit();
     }
 
     function NewStockOutRequest() {
@@ -337,20 +356,22 @@ class Home extends Controller{
         $detailRequestModel = $this->model("DetailRequestModel");
 
         //CREATE REQUEST FIRST
-        $newRequest = $requestModel->insertRequestStockIn($id, $type, $note, $now, $stock);
+        $newRequest = $requestModel->insertRequest($id, $type, $note, $now, $stock);
 
 
         if ($newRequest) {
             //INSERT REQUEST DETAIL
-            $newRequestDetail = $detailRequestModel->insertDetailRequestStockIn($id, $id_arr, $quan_arr, $n);
+            $newRequestDetail = $detailRequestModel->insertDetailRequest($id, $id_arr, $quan_arr, $n);
 
             if ($newRequestDetail) {
-                header("Location: ../Home/StockOut");
-                exit();
+                $_SESSION["newRequest"] = "success";
             }
         } else {
-            echo "Khong the them hoa don";
+            $_SESSION["newRequest"] = "fail";
         }
+
+        header("Location: ../Home/StockOut");
+        exit();
     }
 
     function DetailStockInRequest($id) {
@@ -358,8 +379,8 @@ class Home extends Controller{
         $requestModel = $this->model("RequestModel");
         $detailRequestModel = $this->model("DetailRequestModel");
 
-        $request = $requestModel->getRequestStockInById($id);
-        $detail = $detailRequestModel->getDetailRequestStockInById($id);
+        $request = $requestModel->getRequestById($id);
+        $detail = $detailRequestModel->getDetailRequestById($id);
 
         $user = $this->getUserInfo();
 
@@ -372,18 +393,59 @@ class Home extends Controller{
         ]);
     }
 
-    function DeleteRequest($id) {
+    function DetailStockOutRequest($id) {
         //Call model
         $requestModel = $this->model("RequestModel");
         $detailRequestModel = $this->model("DetailRequestModel");
 
-        $deleteDetail = $detailRequestModel->deteleDetailRequestStockInById($id);
+        $request = $requestModel->getRequestById($id);
+        $detail = $detailRequestModel->getDetailRequestById($id);
+
+        $user = $this->getUserInfo();
+
+        //Call view
+        $this->view("HomeView", [
+            "DetailStockOutRequestView" => "true",
+            "RequestInfo" => $request,
+            "RequestDetail" => $detail,
+            "userInfo" => $user
+        ]);
+    }
+
+    function DeleteRequestStockIn($id) {
+        //Call model
+        $requestModel = $this->model("RequestModel");
+        $detailRequestModel = $this->model("DetailRequestModel");
+
+        $deleteDetail = $detailRequestModel->deteleDetailRequestById($id);
         $deleteRequest = $requestModel->deteleRequestById($id);
 
         if ($deleteDetail and $deleteRequest) {
-            header("Location: ../../Home/StockIn");
-            exit();
+            $_SESSION["deleteRequest"] = "success";
+        } else {
+            $_SESSION["deleteRequest"] = "fail";
         }
+
+        header("Location: ../../Home/StockIn");
+        exit();
+    }
+
+    function DeleteRequestStockOut($id) {
+        //Call model
+        $requestModel = $this->model("RequestModel");
+        $detailRequestModel = $this->model("DetailRequestModel");
+
+        $deleteDetail = $detailRequestModel->deteleDetailRequestById($id);
+        $deleteRequest = $requestModel->deteleRequestById($id);
+
+        if ($deleteDetail and $deleteRequest) {
+            $_SESSION["deleteRequest"] = "success";
+        } else {
+            $_SESSION["deleteRequest"] = "fail";
+        }
+
+        header("Location: ../../Home/StockOut");
+        exit();
     }
 
     function UpdateRequestStockIn($id) {
@@ -397,26 +459,63 @@ class Home extends Controller{
         $detailRequestModel = $this->model("DetailRequestModel");
 
         //DELETE DETAIL REQUEST FIRST
-        $deleteDetail = $detailRequestModel->deteleDetailRequestStockInById($id);
+        $deleteDetail = $detailRequestModel->deteleDetailRequestById($id);
 
         if (!$deleteDetail) {
-            die("Xoa chi tiet yeu cau that bai");
+            $_SESSION["updateRequest"] = "fail";
         }
 
         //UPDATE REQUEST INFO
         $updateInfo = $requestModel->updateRequestById($id, $note);
         if (!$updateInfo) {
-            die("Cap nhat thong tin yeu cau that bai");
+            $_SESSION["updateRequest"] = "fail";
         }
 
         //INSERT NEW DETAIL REQUEST
-        $detailRequest = $detailRequestModel->insertDetailRequestStockIn($id, $id_arr, $quan_arr, $n);
+        $detailRequest = $detailRequestModel->insertDetailRequest($id, $id_arr, $quan_arr, $n);
         if ($detailRequest) {
-            header("Location: ../../Home/StockIn");
-            exit();
+            $_SESSION["updateRequest"] = "success";
         } else {
-            die("Them chi tiet hoa don that bai");
+            $_SESSION["updateRequest"] = "fail";
         }
+
+        header("Location: ../../Home/StockIn");
+        exit();
+    }
+
+    function UpdateRequestStockOut($id) {
+        $id_arr = $_POST["book_id"];
+        $quan_arr = $_POST["quanlity"];
+        $note = $_POST["note"];
+        $n = count($id_arr);
+
+        //Call model
+        $requestModel = $this->model("RequestModel");
+        $detailRequestModel = $this->model("DetailRequestModel");
+
+        //DELETE DETAIL REQUEST FIRST
+        $deleteDetail = $detailRequestModel->deteleDetailRequestById($id);
+
+        if (!$deleteDetail) {
+            $_SESSION["updateRequest"] = "fail";
+        }
+
+        //UPDATE REQUEST INFO
+        $updateInfo = $requestModel->updateRequestById($id, $note);
+        if (!$updateInfo) {
+            $_SESSION["updateRequest"] = "fail";
+        }
+
+        //INSERT NEW DETAIL REQUEST
+        $detailRequest = $detailRequestModel->insertDetailRequest($id, $id_arr, $quan_arr, $n);
+        if ($detailRequest) {
+            $_SESSION["updateRequest"] = "success";
+        } else {
+            $_SESSION["updateRequest"] = "fail";
+        }
+
+        header("Location: ../../Home/StockOut");
+        exit();
     }
 }
 ?>
